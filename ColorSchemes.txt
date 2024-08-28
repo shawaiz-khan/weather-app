@@ -1,0 +1,29 @@
+!--------------------
+    Primary Colors
+---------------------!
+
+Sky Blue: #3ABFF8 (for sunny weather and clear skies)
+Cloud White: #F5F7FA (for cloudy weather)
+Sunset Orange: #FF6B6B (for sunset or alert notifications)
+
+!----------------------
+    Secondary Colors
+-----------------------!
+
+Cool Gray: #6B7280 (for text, borders, and background of secondary elements)
+Night Blue: #1E3A8A (for dark mode background)
+Storm Gray: #4B5563 (for rainy or stormy weather indicators)
+
+!-------------------
+    Accent Colors
+--------------------!
+
+Pastel Green: #10B981 (for temperature and humidity indicators)
+Bright Yellow: #FBBF24 (for sun icons and highlights)
+
+!------------------
+    Text Colors
+-------------------!
+
+Light Mode Text: #111827 (dark gray for primary text)
+Dark Mode Text: #F9FAFB (light gray for primary text)
