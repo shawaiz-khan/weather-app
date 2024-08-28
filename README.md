@@ -82,4 +82,3 @@ This project will be licensed under the [MIT License](./LICENSE).
 
 - **Offline Support**: Cache weather data for offline access.
 - **Notifications**: Notify users of severe weather alerts.
-- **Unit Conversion**: Allow users to switch between Celsius and Fahrenheit.
