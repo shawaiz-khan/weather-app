@@ -13,7 +13,6 @@ This is a work-in-progress modern, responsive Weather App built with **React** a
 - **React**: For building the user interface.
 - **Tailwind CSS**: For styling.
 - **Weather API**: Free APIs like [OpenWeatherMap](https://openweathermap.org/) or [WeatherAPI](https://www.weatherapi.com/).
-- **Deployment**: Will be deployed on [Vercel](https://vercel.com/) or [GitHub Pages](https://pages.github.com/).
 
 ## **To-Do List**
 - [ ] Setup the project structure with React and Tailwind CSS.
