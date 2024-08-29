@@ -2,10 +2,10 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-    { name: 'Nav Item', href: '#', current: true },
-    { name: 'Nav Item', href: '#', current: false },
-    { name: 'Nav Item', href: '#', current: false },
-    { name: 'Nav Item', href: '#', current: false },
+    { id: 1, name: 'Nav Item', href: '#', current: true },
+    { id: 2, name: 'Nav Item', href: '#', current: false },
+    { id: 3, name: 'Nav Item', href: '#', current: false },
+    { id: 4, name: 'Nav Item', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -34,7 +34,7 @@ export default function Navbar() {
                             <div className="flex space-x-4">
                                 {navigation.map((item) => (
                                     <a
-                                        key={item.name}
+                                        key={item.id}
                                         href={item.href}
                                         aria-current={item.current ? 'page' : undefined}
                                         className={classNames(item.current ? 'bg-blue-950 text-white' : 'text-gray-200 hover:bg-blue-900 hover:text-white transition-all duration-300 ease-in', 'rounded-md px-3 py-2 text-sm font-medium',)}>
