@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
     return (
-        <Disclosure as="nav" className="bg-sky-900">
+        <Disclosure as="nav" className="bg-transparent">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -37,7 +37,7 @@ export default function Navbar() {
                                         key={item.name}
                                         href={item.href}
                                         aria-current={item.current ? 'page' : undefined}
-                                        className={classNames(item.current ? 'bg-sky-950 text-white' : 'text-gray-200 hover:bg-sky-800 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium',)}>
+                                        className={classNames(item.current ? 'bg-blue-950 text-white' : 'text-gray-200 hover:bg-blue-900 hover:text-white transition-all duration-300 ease-in', 'rounded-md px-3 py-2 text-sm font-medium',)}>
                                         {item.name}
                                     </a>
                                 ))}
