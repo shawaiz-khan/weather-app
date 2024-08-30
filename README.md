@@ -38,7 +38,7 @@ This is a work-in-progress modern, responsive Weather App built with **React** a
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/weather-app.git
+   git clone https://github.com/shawaiz-khan/weather-app.git
    cd weather-app
    ```
 
