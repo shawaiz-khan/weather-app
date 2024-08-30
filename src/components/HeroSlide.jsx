@@ -1,3 +1,4 @@
+import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -6,9 +7,9 @@ import "swiper/css/pagination";
 import SunnyCloud from '../assets/icons/sunny_cloud.png';
 import ThunderCloud from '../assets/icons/rain_cloud.png';
 import bgImage1 from '../assets/images/heroImg.jpg';
-// import bgImage2 from '../assets/images/heroImg2.jpg';
-// import bgImage3 from '../assets/images/heroImg3.jpg';
-// import bgImage4 from '../assets/images/heroImg4.jpg';
+import bgImage2 from '../assets/images/heroImg5.jpg';
+import bgImage3 from '../assets/images/heroImg6.jpg';
+import bgImage4 from '../assets/images/heroImg9.jpg';
 
 export const slides = [
     {
@@ -22,30 +23,29 @@ export const slides = [
         id: 2,
         heading: "Plan Your Week with Accurate Forecasts",
         paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
-        image: bgImage1,
+        image: bgImage3,
         icon: ThunderCloud,
     },
     {
         id: 3,
         heading: "A Weather Experience Tailored to You",
         paragraph: "Enjoy a beautiful, easy-to-use interface with light and dark mode options. BrightCast makes checking the weather a delightful experience anytime.",
-        image: bgImage1,
+        image: bgImage2,
         icon: SunnyCloud,
     },
     {
         id: 4,
         heading: "Plan Your Week with Accurate Forecasts",
         paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
-        image: bgImage1,
+        image: bgImage4,
         icon: ThunderCloud,
     },
 ];
 
-export default function HeroSlide() {
+const HeroSlide = React.memo(() => {
     return (
         <Swiper
             modules={[Navigation, Pagination, Autoplay]}
-            // navigation
             pagination={{ clickable: true }}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             loop
@@ -53,7 +53,7 @@ export default function HeroSlide() {
         >
             {slides.map((slide) => {
                 const { id, heading, paragraph, image, icon } = slide;
-                console.log(id);
+                console.log(id)
                 return (
                     <SwiperSlide key={id}>
                         <div
@@ -76,4 +76,6 @@ export default function HeroSlide() {
             })}
         </Swiper>
     );
-};
+});
+
+export default HeroSlide;

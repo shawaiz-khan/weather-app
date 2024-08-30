@@ -37,7 +37,7 @@ export default function Navbar() {
                                         key={item.id}
                                         href={item.href}
                                         aria-current={item.current ? 'page' : undefined}
-                                        className={classNames(item.current ? 'bg-blue-950 text-white' : 'text-gray-200 hover:bg-blue-900 hover:text-white transition-all duration-300 ease-in', 'rounded-md px-3 py-2 text-sm font-medium',)}>
+                                        className={classNames(item.current ? 'bg-seaBlue-900 text-white' : 'text-gray-200 hover:bg-seaBlue-700 hover:text-white transition-all duration-300 ease-in', 'rounded-md px-3 py-2 text-sm font-medium',)}>
                                         {item.name}
                                     </a>
                                 ))}

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import HeroSlide from '../components/HeroSlide';
 
@@ -31,7 +31,7 @@ export default function Home() {
             <section className="relative h-[39.2rem] bg-center bg-cover bg-fixed">
                 <HeroSlide />
             </section>
-            <article className='h-fit bg-blue-900 px-3 py-3'>
+            <article className='h-fit bg-seaBlue-950 px-3 py-3'>
                 <form action="submit" className='flex justify-center gap-10' onSubmit={HandleSubmit}>
                     <input
                         type="text"
@@ -49,7 +49,7 @@ export default function Home() {
                         onChange={HandleChange}
                         className='px-3 py-1 rounded-md'
                     />
-                    <button className='bg-blue-600 hover:bg-blue-950 text-white  px-10 py-1 rounded-md transition-all duration-300 ease-in'>Search</button>
+                    <button className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white  px-10 py-1 rounded-md transition-all duration-300 ease-in'>Search</button>
                 </form>
             </article>
         </main>
