@@ -1,28 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSlide from '../components/HeroSlide';
+import WeatherForm from '../components/WeatherForm';
 
 export default function Home() {
-    const [form, setForm] = useState({
-        city: '',
-        country: '',
-    });
-
-    const HandleChange = (e) => {
-        const { name, value } = e.target;
-        setForm(prevForm => ({
-            ...prevForm,
-            [name]: value
-        }));
-        console.log(form);
-    };
-
-    const HandleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Submitted', form);
-    }
-
     return (
         <main>
             <nav className="absolute top-0 left-0 right-0 z-20 px-5 pt-3">
@@ -31,27 +13,9 @@ export default function Home() {
             <section className="relative h-[39.2rem] bg-center bg-cover bg-fixed">
                 <HeroSlide />
             </section>
-            <article className='h-fit bg-seaBlue-950 px-3 py-3'>
-                <form action="submit" className='flex justify-center gap-10' onSubmit={HandleSubmit}>
-                    <input
-                        type="text"
-                        placeholder='City'
-                        value={form.city}
-                        name='city'
-                        onChange={HandleChange}
-                        className='px-3 py-1 rounded-md'
-                    />
-                    <input
-                        type="text"
-                        placeholder='Country'
-                        value={form.country}
-                        name='country'
-                        onChange={HandleChange}
-                        className='px-3 py-1 rounded-md'
-                    />
-                    <button className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white  px-10 py-1 rounded-md transition-all duration-300 ease-in'>Search</button>
-                </form>
-            </article>
+            <section className='h-fit bg-seaBlue-950 px-3 py-3'>
+                <WeatherForm />
+            </section>
         </main>
     )
 }
