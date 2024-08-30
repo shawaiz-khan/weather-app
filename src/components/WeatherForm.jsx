@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react';
 import WeatherCard from './WeatherCard';
 
 export default function WeatherForm() {
-    const [form, setForm] = useState({
-        city: '',
-        country: '',
-    });
+    const [form, setForm] = useState({ city: '' });
     const [weather, setWeather] = useState(null);
 
-    const fetchWeatherData = async (city = 'London', country = '') => {
+    const fetchWeatherData = async (city = 'London') => {
         try {
             const query = city || 'London';
             const response = await fetch(`/api/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${query}&aqi=no`);
@@ -18,11 +15,11 @@ export default function WeatherForm() {
             const data = await response.json();
 
             const { location, current } = data;
-            const { name, region, country: locCountry } = location;
+            const { name, country: locCountry } = location;
             const { temp_c, temp_f, condition, wind_mph, wind_kph, humidity, feelslike_c, feelslike_f } = current;
 
             setWeather({
-                location: `${name}, ${region}, ${locCountry}`,
+                location: `${name}, ${locCountry}`,
                 temperature: {
                     celsius: temp_c,
                     fahrenheit: temp_f
@@ -45,6 +42,10 @@ export default function WeatherForm() {
 
         } catch (error) {
             console.error('Error fetching weather data:', error);
+            alert('Enter a valid city')
+            if (city !== 'London') {
+                fetchWeatherData('London');
+            }
         }
     };
 
@@ -63,34 +64,23 @@ export default function WeatherForm() {
 
     const HandleSubmit = (e) => {
         e.preventDefault();
-        const { city, country } = form;
-        fetchWeatherData(city || 'London', country || 'USA');
-        setForm({
-            city: '',
-            country: ''
-        });
+        const { city } = form;
+        fetchWeatherData(city || 'London');
+        setForm({ city: '' });
     };
 
     return (
         <>
-            <form onSubmit={HandleSubmit} className='flex justify-center gap-10 h-fit bg-seaBlue-950 p-3 items-center align-middle'>
+            <form onSubmit={HandleSubmit} className='flex justify-center gap-10 h-fit bg-seaBlue-950 p-5 items-center align-middle'>
                 <input
                     type="text"
                     placeholder='City'
                     value={form.city}
                     name='city'
                     onChange={HandleChange}
-                    className='px-3 py-1 rounded-md'
+                    className='w-96  px-3 py-2 rounded-md'
                 />
-                <input
-                    type="text"
-                    placeholder='Country'
-                    value={form.country}
-                    name='country'
-                    onChange={HandleChange}
-                    className='px-3 py-1 rounded-md'
-                />
-                <button type="submit" className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white px-10 py-1 rounded-md transition-all duration-300 ease-in'>Search</button>
+                <button type="submit" className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white px-10 py-2 rounded-md transition-all duration-300 ease-in'>Search</button>
             </form>
             <article>
                 {weather && (

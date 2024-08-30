@@ -5,7 +5,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import SunnyCloud from '../assets/icons/sunny_cloud.png';
-import ThunderCloud from '../assets/icons/rain_cloud.png';
+import ClearCloud from '../assets/icons/clear_cloud.png';
+import RainCloud from '../assets/icons/rain_cloud.png';
+import ThunderCloud from '../assets/icons/thunder_cloud.png';
 import bgImage1 from '../assets/images/heroImg.jpg';
 import bgImage2 from '../assets/images/heroImg5.jpg';
 import bgImage3 from '../assets/images/heroImg6.jpg';
@@ -17,14 +19,14 @@ export const slides = [
         heading: "Stay Ahead with Real Time Weather Alerts",
         paragraph: "Get instant updates on changing weather conditions in your area. Be prepared for every moment, whether it's sunshine, rain, or a storm.",
         image: bgImage1,
-        icon: SunnyCloud,
+        icon: ThunderCloud,
     },
     {
         id: 2,
         heading: "Plan Your Week with Accurate Forecasts",
         paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
         image: bgImage3,
-        icon: ThunderCloud,
+        icon: RainCloud,
     },
     {
         id: 3,
@@ -38,7 +40,7 @@ export const slides = [
         heading: "Plan Your Week with Accurate Forecasts",
         paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
         image: bgImage4,
-        icon: ThunderCloud,
+        icon: ClearCloud,
     },
 ];
 
@@ -67,7 +69,7 @@ const HeroSlide = React.memo(() => {
                                     <p className="text-lg text-white max-w-md">{paragraph}</p>
                                 </article>
                                 <div className="flex items-center justify-end">
-                                    <img src={icon} alt="" className="max-w-72" />
+                                    <img src={icon} alt="" className="max-w-60" />
                                 </div>
                             </div>
                         </div>

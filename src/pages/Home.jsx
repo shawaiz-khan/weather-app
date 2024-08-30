@@ -15,7 +15,7 @@ export default function Home() {
                     <section className="relative h-[30rem] bg-center bg-cover bg-fixed">
                         <HeroSlide />
                     </section>
-                    <section className=''>
+                    <section>
                         <WeatherForm />
                     </section>
                 </section>
