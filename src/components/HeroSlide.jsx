@@ -10,38 +10,38 @@ import bgImage1 from '../assets/images/heroImg.jpg';
 // import bgImage3 from '../assets/images/heroImg3.jpg';
 // import bgImage4 from '../assets/images/heroImg4.jpg';
 
-export default function HeroSlide() {
-    const slides = [
-        {
-            id: 1,
-            heading: "Stay Ahead with Real-Time Weather Alerts",
-            paragraph: "Get instant updates on changing weather conditions in your area. Be prepared for every moment, whether it's sunshine, rain, or a storm.",
-            image: bgImage1,
-            icon: SunnyCloud,
-        },
-        {
-            id: 2,
-            heading: "Plan Your Week with Accurate Forecasts",
-            paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
-            image: bgImage1,
-            icon: ThunderCloud,
-        },
-        {
-            id: 3,
-            heading: "A Weather Experience Tailored to You",
-            paragraph: "Enjoy a beautiful, easy-to-use interface with light and dark mode options. BrightCast makes checking the weather a delightful experience anytime.",
-            image: bgImage1,
-            icon: SunnyCloud,
-        },
-        {
-            id: 2,
-            heading: "Plan Your Week with Accurate Forecasts",
-            paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
-            image: bgImage1,
-            icon: ThunderCloud,
-        },
-    ];
+export const slides = [
+    {
+        id: 1,
+        heading: "Stay Ahead with Real Time Weather Alerts",
+        paragraph: "Get instant updates on changing weather conditions in your area. Be prepared for every moment, whether it's sunshine, rain, or a storm.",
+        image: bgImage1,
+        icon: SunnyCloud,
+    },
+    {
+        id: 2,
+        heading: "Plan Your Week with Accurate Forecasts",
+        paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
+        image: bgImage1,
+        icon: ThunderCloud,
+    },
+    {
+        id: 3,
+        heading: "A Weather Experience Tailored to You",
+        paragraph: "Enjoy a beautiful, easy-to-use interface with light and dark mode options. BrightCast makes checking the weather a delightful experience anytime.",
+        image: bgImage1,
+        icon: SunnyCloud,
+    },
+    {
+        id: 4,
+        heading: "Plan Your Week with Accurate Forecasts",
+        paragraph: "Access detailed daily and weekly forecasts to plan your activities with confidence. Know what to expect and make the most of your days.",
+        image: bgImage1,
+        icon: ThunderCloud,
+    },
+];
 
+export default function HeroSlide() {
     return (
         <Swiper
             modules={[Navigation, Pagination, Autoplay]}
@@ -61,13 +61,13 @@ export default function HeroSlide() {
                             style={{ backgroundImage: `url(${image})` }}
                         >
                             <div className="absolute inset-0 bg-black opacity-50"></div>
-                            <div className="relative z-10 grid grid-cols-2 gap-8 p-16">
+                            <div className="relative z-10 grid grid-cols-2 gap-8 p-16 justify-between">
                                 <article className="flex flex-col justify-center max-w-2xl">
                                     <h1 className="text-5xl font-bold text-white mb-4">{heading}</h1>
                                     <p className="text-lg text-white max-w-md">{paragraph}</p>
                                 </article>
-                                <div className="flex items-center justify-center">
-                                    <img src={icon} alt="" className="max-w-80" />
+                                <div className="flex items-center justify-end">
+                                    <img src={icon} alt="" className="max-w-72" />
                                 </div>
                             </div>
                         </div>
