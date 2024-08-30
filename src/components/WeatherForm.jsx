@@ -1,23 +1,57 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import WeatherCard from './WeatherCard';
 
 export default function WeatherForm() {
-    const fetchWeatherData = async (city, country) => {
+    const [form, setForm] = useState({
+        city: '',
+        country: '',
+    });
+    const [weather, setWeather] = useState(null);
+
+    const fetchWeatherData = async (city = 'London', country = '') => {
         try {
-            const response = await fetch(`/api/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${city}&aqi=no`);
+            const query = city || 'London';
+            const response = await fetch(`/api/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${query}&aqi=no`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data);
+
+            const { location, current } = data;
+            const { name, region, country: locCountry } = location;
+            const { temp_c, temp_f, condition, wind_mph, wind_kph, humidity, feelslike_c, feelslike_f } = current;
+
+            setWeather({
+                location: `${name}, ${region}, ${locCountry}`,
+                temperature: {
+                    celsius: temp_c,
+                    fahrenheit: temp_f
+                },
+                weatherDescription: condition.text,
+                humidity,
+                windSpeed: {
+                    mph: wind_mph,
+                    kph: wind_kph
+                },
+                feelsLike: {
+                    celsius: feelslike_c,
+                    fahrenheit: feelslike_f
+                },
+                weatherCondition: {
+                    text: condition.text,
+                    icon: condition.icon
+                }
+            });
+
         } catch (error) {
             console.error('Error fetching weather data:', error);
         }
     };
 
-    const [form, setForm] = useState({
-        city: '',
-        country: '',
-    });
+    useEffect(() => {
+        fetchWeatherData();
+        console.log('Clean')
+    }, []);
 
     const HandleChange = (e) => {
         const { name, value } = e.target;
@@ -25,37 +59,52 @@ export default function WeatherForm() {
             ...prevForm,
             [name]: value
         }));
-        console.log(form);
     };
 
     const HandleSubmit = (e) => {
         e.preventDefault();
-        console.log('Submitted', form);
-        fetchWeatherData(form.city, form.country);
-        setForm(prevForm => ({
+        const { city, country } = form;
+        fetchWeatherData(city || 'London', country || 'USA');
+        setForm({
             city: '',
             country: ''
-        }));
-    }
+        });
+    };
+
     return (
-        <form action="submit" className='flex justify-center gap-10' onSubmit={HandleSubmit}>
-            <input
-                type="text"
-                placeholder='City'
-                value={form.city}
-                name='city'
-                onChange={HandleChange}
-                className='px-3 py-1 rounded-md'
-            />
-            <input
-                type="text"
-                placeholder='Country'
-                value={form.country}
-                name='country'
-                onChange={HandleChange}
-                className='px-3 py-1 rounded-md'
-            />
-            <button className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white  px-10 py-1 rounded-md transition-all duration-300 ease-in'>Search</button>
-        </form>
-    )
+        <>
+            <form onSubmit={HandleSubmit} className='flex justify-center gap-10 h-fit bg-seaBlue-950 p-3 items-center align-middle'>
+                <input
+                    type="text"
+                    placeholder='City'
+                    value={form.city}
+                    name='city'
+                    onChange={HandleChange}
+                    className='px-3 py-1 rounded-md'
+                />
+                <input
+                    type="text"
+                    placeholder='Country'
+                    value={form.country}
+                    name='country'
+                    onChange={HandleChange}
+                    className='px-3 py-1 rounded-md'
+                />
+                <button type="submit" className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white px-10 py-1 rounded-md transition-all duration-300 ease-in'>Search</button>
+            </form>
+            <article>
+                {weather && (
+                    <WeatherCard
+                        location={weather.location}
+                        temperature={weather.temperature.celsius}
+                        weatherDescription={weather.weatherDescription}
+                        humidity={weather.humidity}
+                        windSpeed={weather.windSpeed.kph}
+                        feelsLike={weather.feelsLike.celsius}
+                        weatherIcon={weather.weatherCondition.icon}
+                    />
+                )}
+            </article>
+        </>
+    );
 }
