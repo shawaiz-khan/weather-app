@@ -50,11 +50,10 @@ export default function HeroSlide() {
             pagination={{ clickable: true }}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             loop
-            className="h-full"
+            className="h-screen"
         >
             {slides.map((slide) => {
                 const { id, heading, paragraph, image, icon } = slide;
-                console.log(id);
                 return (
                     <SwiperSlide key={id}>
                         <div
@@ -62,13 +61,13 @@ export default function HeroSlide() {
                             style={{ backgroundImage: `url(${image})` }}
                         >
                             <div className="absolute inset-0 bg-black opacity-50"></div>
-                            <div className="relative z-10 grid grid-cols-2 gap-8 p-16 justify-between">
-                                <article className="flex flex-col justify-center max-w-2xl">
-                                    <h1 className="text-5xl font-bold text-white mb-4">{heading}</h1>
-                                    <p className="text-lg text-white max-w-md">{paragraph}</p>
+                            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 p-4 md:p-8 lg:p-16">
+                                <article className="flex flex-col justify-center text-center md:text-left max-w-full md:max-w-2xl mx-auto md:mx-0">
+                                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">{heading}</h1>
+                                    <p className="text-base md:text-lg lg:text-xl text-white max-w-xs md:max-w-md mx-auto md:mx-0">{paragraph}</p>
                                 </article>
-                                <div className="flex items-center justify-end">
-                                    <img src={icon} alt="" className="max-w-60" />
+                                <div className="flex items-center justify-center md:justify-end">
+                                    <img src={icon} alt="" className="w-32 md:w-40 lg:w-60" />
                                 </div>
                             </div>
                         </div>
@@ -77,4 +76,4 @@ export default function HeroSlide() {
             })}
         </Swiper>
     );
-};
+}
