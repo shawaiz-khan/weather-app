@@ -1,12 +1,12 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
+const isHome = true;
+
 const navigation = [
-    { id: 1, name: 'Nav Item', href: '#', current: true },
-    { id: 2, name: 'Nav Item', href: '#', current: false },
-    { id: 3, name: 'Nav Item', href: '#', current: false },
-    { id: 4, name: 'Nav Item', href: '#', current: false },
-]
+    { id: 1, name: 'Home', href: '/', current: isHome },
+    { id: 2, name: 'Weather Card', href: '#weather-card', current: !isHome },
+];
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
