@@ -6,14 +6,39 @@ export default function WeatherForm() {
     const [weather, setWeather] = useState(null);
 
     const fetchWeatherData = async (city = 'London', country = '') => {
-        try {
-            const query = country ? `${city}, ${country}` : city;
-            const response = await fetch(`/api/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${query}&aqi=no`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
+        const apiKey = import.meta.env.VITE_API_KEY;
+        const primaryApiUrl = import.meta.env.VITE_API_URL;
+        const alternativeApiKey = '142ed2d794e941c7831140223242808';
+        const alternativeApiUrl = 'https://q7hyrx-5173.csb.app/api/v1/current.json';
+        
+        if (!apiKey && !alternativeApiKey) {
+            console.error('API Key is missing.');
+            return;
+        }
 
+        const query = country ? `${city}, ${country}` : city;
+
+        const fetchFromUrl = async (url, key) => {
+            try {
+                const response = await fetch(`${url}?key=${key}&q=${query}&aqi=no`);
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok. Status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (err) {
+                console.error('Fetch error:', err);
+                return null;
+            }
+        };
+
+        let data = await fetchFromUrl(primaryApiUrl, apiKey);
+
+        if (!data) {
+            console.log('Primary API URL failed. Trying alternative API URL.');
+            data = await fetchFromUrl(alternativeApiUrl, alternativeApiKey);
+        }
+
+        if (data) {
             const { location, current } = data;
             const { name, country: locCountry } = location;
             const { temp_c, temp_f, condition, wind_mph, wind_kph, humidity, feelslike_c, feelslike_f } = current;
@@ -39,18 +64,15 @@ export default function WeatherForm() {
                     icon: condition.icon
                 }
             });
-        } catch (err) {
-            console.log(err);
-            alert('Enter a valid city or country');
-            if (city !== 'London') {
-                fetchWeatherData('London');
-            }
+        } else {
+            console.error('Both API URLs failed.');
+            alert('Unable to fetch weather data. Please try again later.');
         }
     };
 
     useEffect(() => {
-        fetchWeatherData()
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+        fetchWeatherData();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
