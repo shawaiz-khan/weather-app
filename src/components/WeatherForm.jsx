@@ -7,7 +7,6 @@ export default function WeatherForm() {
 
     const fetchWeatherData = async (city = 'London', country = '') => {
         try {
-            // Construct the query string with city and country
             const query = country ? `${city}, ${country}` : city;
             const response = await fetch(`/api/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${query}&aqi=no`);
             if (!response.ok) {
@@ -50,7 +49,7 @@ export default function WeatherForm() {
     };
 
     useEffect(() => {
-        fetchWeatherData();
+        fetchWeatherData()
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleChange = (e) => {

@@ -12,6 +12,7 @@ import bgImage2 from '../assets/images/heroImg5.jpg';
 import bgImage3 from '../assets/images/heroImg6.jpg';
 import bgImage4 from '../assets/images/heroImg9.jpg';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const slides = [
     {
         id: 1,

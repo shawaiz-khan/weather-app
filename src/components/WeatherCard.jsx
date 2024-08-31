@@ -9,7 +9,6 @@ const WeatherCard = ({ location, temperature, weatherDescription, humidity, wind
 
     return (
         <div className={`weather-card p-4 sm:p-6 md:p-8 ${cardClass} grid grid-cols-1 md:grid-cols-2 items-center gap-6`}>
-            {/* Left Column */}
             <div className="flex flex-col items-center justify-center text-center md:text-left">
                 <img 
                     src={weatherIcon} 
@@ -19,7 +18,6 @@ const WeatherCard = ({ location, temperature, weatherDescription, humidity, wind
                 <p className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">{location}</p>
                 <p className="text-sm sm:text-md text-gray-600 font-medium">{weatherDescription}</p>
             </div>
-            {/* Right Column */}
             <div className="flex flex-col items-center justify-center text-center md:text-right">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
                     {temperature}°C
