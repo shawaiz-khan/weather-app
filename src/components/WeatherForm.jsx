@@ -7,8 +7,7 @@ export default function WeatherForm() {
 
     const fetchWeatherData = async (city = 'London') => {
         try {
-            const query = city || 'London';
-            const response = await fetch(`/api/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${query}&aqi=no`);
+            const response = await fetch(`/api/v1/current.json?key=${import.meta.env.VITE_API_KEY}&q=${city}&aqi=no`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -39,9 +38,8 @@ export default function WeatherForm() {
                     icon: condition.icon
                 }
             });
-
-        } catch (error) {
-            console.error('Error fetching weather data:', error);
+        } catch (err) {
+            console.log(err);
             alert('Enter a valid city')
             if (city !== 'London') {
                 fetchWeatherData('London');
@@ -51,9 +49,7 @@ export default function WeatherForm() {
 
     useEffect(() => {
         fetchWeatherData();
-        console.log('Clean')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const HandleChange = (e) => {
         const { name, value } = e.target;
@@ -79,9 +75,12 @@ export default function WeatherForm() {
                     value={form.city}
                     name='city'
                     onChange={HandleChange}
-                    className='w-96  px-3 py-2 rounded-md'
+                    className='w-96 px-3 py-2 rounded-md'
+                    aria-label="City"
                 />
-                <button type="submit" className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white px-10 py-2 rounded-md transition-all duration-300 ease-in'>Search</button>
+                <button type="submit" className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white px-10 py-2 rounded-md transition-all duration-300 ease-in'>
+                    Search
+                </button>
             </form>
             <article id='weather-card'>
                 {weather && (

@@ -1,11 +1,11 @@
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
-const isHome = true;
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const navigation = [
-    { id: 1, name: 'Home', href: '/', current: isHome },
-    { id: 2, name: 'Weather Card', href: '#weather-card', current: !isHome },
+    { id: 1, name: 'Home', href: '/', current: true },
+    { id: 2, name: 'Weather Card', href: '#weather-card', current: false },
 ];
 
 function classNames(...classes) {
@@ -13,12 +13,23 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.hash) {
+            const element = document.querySelector(location.hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, [location]);
+
     return (
         <Disclosure as="nav" className="bg-transparent">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                        {/* Mobile menu button*/}
+                        {/* Mobile menu button */}
                         <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Open main menu</span>
@@ -33,13 +44,17 @@ export default function Navbar() {
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-4">
                                 {navigation.map((item) => (
-                                    <a
+                                    <Link
                                         key={item.id}
-                                        href={item.href}
-                                        aria-current={item.current ? 'page' : undefined}
-                                        className={classNames(item.current ? 'bg-seaBlue-900 text-white' : 'text-gray-200 hover:bg-seaBlue-700 hover:text-white transition-all duration-300 ease-in', 'rounded-md px-3 py-2 text-sm font-medium',)}>
+                                        to={item.href}
+                                        aria-current={location.pathname === item.href ? 'page' : undefined}
+                                        className={classNames(
+                                            location.pathname === item.href ? 'bg-seaBlue-900 text-white' : 'text-gray-200 hover:bg-seaBlue-700 hover:text-white transition-all duration-300 ease-in',
+                                            'rounded-md px-3 py-2 text-sm font-medium'
+                                        )}
+                                    >
                                         {item.name}
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -51,16 +66,20 @@ export default function Navbar() {
                 <div className="space-y-1 px-2 pb-3 pt-2">
                     {navigation.map((item) => (
                         <DisclosureButton
-                            key={item.name}
-                            as="a"
-                            href={item.href}
-                            aria-current={item.current ? 'page' : undefined}
-                            className={classNames(item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium',)}>
+                            key={item.id}
+                            as={Link}
+                            to={item.href}
+                            aria-current={location.pathname === item.href ? 'page' : undefined}
+                            className={classNames(
+                                location.pathname === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'block rounded-md px-3 py-2 text-base font-medium'
+                            )}
+                        >
                             {item.name}
                         </DisclosureButton>
                     ))}
                 </div>
             </DisclosurePanel>
         </Disclosure>
-    )
+    );
 }
