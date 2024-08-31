@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSlide from '../components/HeroSlide';
 import WeatherForm from '../components/WeatherForm';
+import Footer from '../components/Footer';
 
 export default function Home() {
     return (
@@ -17,6 +18,9 @@ export default function Home() {
                     </section>
                     <section>
                         <WeatherForm />
+                    </section>
+                    <section>
+                        <Footer />
                     </section>
                 </section>
             </section>

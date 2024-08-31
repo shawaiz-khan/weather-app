@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import WeatherCard from './WeatherCard';
 
 export default function WeatherForm() {
@@ -52,6 +52,7 @@ export default function WeatherForm() {
     useEffect(() => {
         fetchWeatherData();
         console.log('Clean')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const HandleChange = (e) => {
@@ -82,7 +83,7 @@ export default function WeatherForm() {
                 />
                 <button type="submit" className='bg-seaBlue-600 hover:bg-seaBlue-800 text-white px-10 py-2 rounded-md transition-all duration-300 ease-in'>Search</button>
             </form>
-            <article>
+            <article id='weather-card'>
                 {weather && (
                     <WeatherCard
                         location={weather.location}
