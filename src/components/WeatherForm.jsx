@@ -8,10 +8,8 @@ export default function WeatherForm() {
     const fetchWeatherData = async (city = 'London', country = '') => {
         const apiKey = import.meta.env.VITE_API_KEY;
         const primaryApiUrl = import.meta.env.VITE_API_URL;
-        const alternativeApiKey = '142ed2d794e941c7831140223242808';
-        const alternativeApiUrl = 'https://q7hyrx-5173.csb.app/api/v1/current.json';
-        
-        if (!apiKey && !alternativeApiKey) {
+
+        if (!apiKey && !primaryApiUrl) {
             console.error('API Key is missing.');
             return;
         }
@@ -35,7 +33,7 @@ export default function WeatherForm() {
 
         if (!data) {
             console.log('Primary API URL failed. Trying alternative API URL.');
-            data = await fetchFromUrl(alternativeApiUrl, alternativeApiKey);
+            data = await fetchFromUrl(primaryApiUrl, apiKey);
         }
 
         if (data) {
